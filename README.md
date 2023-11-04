@@ -1,3 +1,5 @@
+## Commands and Techniques to do recon on windows hosts (some of these techniques generate lot of noise so use them sparingly)
+
 ### 1 - nmap
 
 * ``` $ nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’<domain>’,userdb=/root/Desktop/usernames.txt <IP> ``` 
