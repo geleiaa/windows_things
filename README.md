@@ -1,6 +1,13 @@
 ## Commands and Techniques to do recon on windows hosts 
+
 note1: some of these techniques generate lot of noise so use them sparingly.
+
 note2: some of these techniques depends of the ports are open in the host.
+
+1 - [nmap](https://github.com/geleiaa/winRecon_outside/edit/main/README.md#1---nmap)
+
+10 - [ldapsearch](https://github.com/geleiaa/winRecon_outside/edit/main/README.md#10---ldapsearch)
+
 
 ### 1 - nmap
 
@@ -52,7 +59,7 @@ note2: some of these techniques depends of the ports are open in the host.
 ### 6 - Kerbrute
 
 * Enum user
-* ``` $ ./kerbrute userenum --dc <IP>  -d ad.domain /path/to/wordlist ```
+* ``` $ ./kerbrute userenum --dc <IP>  -d ad.domain usernames.txt ```
 
 * Passwors brute
 * ``` $ ./kerbrute bruteuser -d ad.domain --dc <IP> wordlist.txt username ```  
@@ -80,6 +87,10 @@ note2: some of these techniques depends of the ports are open in the host.
 
 * Password brute
 * ``` $ crackmapexec ldap <IP> -u <username or userlist> -p wordlist.txt ```
+
+* asreproast
+* ``` $ crackmapexec ldap <IP> -u users.txt -p '' --asreproast output.txt ```
+
 
 ### 9 - Hydra
 
