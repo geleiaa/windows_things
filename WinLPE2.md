@@ -105,18 +105,18 @@ ftp, ssh, vpn, git, .kdbx, .db
 
 ## Arquivos nos Registries 
 
-- ``` req query "HKCU\Software\ORL\WinVNC3\Passowrd" ```
+- ``` reg query "HKCU\Software\ORL\WinVNC3\Passowrd" ```
  
-- ``` req query "HKCU\Software\TightVNC\Server" ```
+- ``` reg query "HKCU\Software\TightVNC\Server" ```
 
-- ``` req query "HKCU\Software\SimonTatham\PuTTY\Sessions" ```
+- ``` reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" ```
 
-- ``` req query "HKCU\Software\SimonTatham\PuTTY\Sessions\local" ```
+- ``` reg query "HKCU\Software\SimonTatham\PuTTY\Sessions\local" ```
 
 
-- ``` req query HKLM /f password /c REG_SZ /s ```
+- ``` reg query HKLM /f password /c REG_SZ /s ```
 
-- ``` req query HKLM /f password /c REG_SZ /s ```
+- ``` reg query HKLM /f password /c REG_SZ /s ```
 
 
 
